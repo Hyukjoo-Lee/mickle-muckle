@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mmk.app_backend.dao.UserRepository;
@@ -21,10 +20,19 @@ public class ApiController {
     // return this.userRepository.findUserVOById(id);
     // }
 
-    @ResponseBody
     @GetMapping("/api/user")
-    public List<UserVO> getUserApi() {
-        return userRepository.findAll();
+    public String getUserApi() {
+        List<UserVO> list = userRepository.findUserVOById("test");
+        String result = "";
+        for (int i = 0; i < list.size(); i++) {
+            result += list.get(i);
+        }
+        return result;
     }
+
+    // @GetMapping("/api/user")
+    // public String getUserApi() {
+    // return (String) userRepository.findUserVOById("test");
+    // }
 
 }

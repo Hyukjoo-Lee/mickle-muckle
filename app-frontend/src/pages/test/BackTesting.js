@@ -5,12 +5,16 @@ const BackTesting = () => {
   const [user, setUser] = useState('');
 
   useEffect(() => {
-    axios
-      .get('/api/user')
-      .then((response) => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('/api/user');
         setUser(response.data);
-      })
-      .catch((error) => console.log(error));
+        console.log(response.data);
+      } catch (error) {
+        console.error('Network response was not ok', error);
+      }
+    };
+    fetchUser();
   }, []);
 
   return <div>Hi, User is {user}</div>;
