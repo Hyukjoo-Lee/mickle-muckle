@@ -15,13 +15,14 @@ import { CardChallege } from './pages/cardChallege/CardChallege';
 import { Community } from './pages/community/Community';
 import { CommunityFormBox } from './pages/community/CommunityFormBox';
 import { Intro } from './pages/intro/Intro';
-import { MainPage } from './pages/main/MainPage';
+// import { MainPage } from './pages/main/MainPage';
 import { MyCard } from './pages/mycard/MyCard';
 import { MyPage } from './pages/mypage/MyPage';
 import theme from './theme/theme';
 import { CommunityPost } from './pages/community/CommunityPost';
 import { NoticePost } from './pages/community/NoticePost';
 import { EditFormBox } from './pages/community/EditFormBox';
+import BackTesting from './pages/test/BackTesting';
 
 const Root = styled.div`
   & *,
@@ -37,9 +38,9 @@ const ContentsBox = styled.div`
 function Layout({ children }) {
   return (
     <Root>
-      <MainHeader />
+      {/* <MainHeader /> */}
       <ContentsBox>{children}</ContentsBox>
-      <Footer />
+      {/* <Footer /> */}
     </Root>
   );
 }
@@ -55,7 +56,7 @@ function App() {
       >
         <Layout>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<BackTesting />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/mypage" element={<MyPage />} />
