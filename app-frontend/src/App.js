@@ -2,8 +2,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
 
-import Footer from './common/Footer';
-import { MainHeader } from './common/MainHeader';
+// import Footer from './common/Footer';
+// import { MainHeader } from './common/MainHeader';
 
 import { ThemeProvider } from 'styled-components';
 import { FindID } from './pages/auth/FindID';
@@ -22,7 +22,8 @@ import theme from './theme/theme';
 import { CommunityPost } from './pages/community/CommunityPost';
 import { NoticePost } from './pages/community/NoticePost';
 import { EditFormBox } from './pages/community/EditFormBox';
-import BackTesting from './pages/test/BackTesting';
+// import BackTesting from './pages/test/BackTesting';
+import BackTesting2 from './pages/test/BackTesting2';
 
 const Root = styled.div`
   & *,
@@ -56,7 +57,8 @@ function App() {
       >
         <Layout>
           <Routes>
-            <Route path="/" element={<BackTesting />} />
+            {/* <Route path="/" element={<BackTesting />} /> */}
+            <Route path="/" element={<BackTesting2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/mypage" element={<MyPage />} />
