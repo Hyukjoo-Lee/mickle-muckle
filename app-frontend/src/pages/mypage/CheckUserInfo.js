@@ -141,7 +141,7 @@ const CheckUserInfo = ({
 
   const isFormValid = () => {
     for (const key in userInfo) {
-      if (userInfo[key].trim() === '') {
+      if (('' + userInfo[key]).trim() === '') {
         return 1;
       }
     }
