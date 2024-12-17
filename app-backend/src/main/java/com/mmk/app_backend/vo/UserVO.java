@@ -25,7 +25,7 @@ import lombok.ToString;
         initialValue = 1, // 시작값
         allocationSize = 1 // 1씩 증가값
 )
-@Table(name = "tbl_User") // user 테이블 생성
+@Table(name = "User_info") // user 테이블 생성
 public class UserVO {
 
     @Id // 기본키 컬럼
