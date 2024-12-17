@@ -12,19 +12,20 @@ export function MyPage() {
     axios
       .get('/user/id')
       .then((response) => {
-        setUsers(response.data[0]);
+        setUsers(response.data);
       })
       .catch((error) => console.log(error.response || error.message));
   }, []);
 
   const userInfo = users
     ? {
-        userName: users.name,
-        userId: users.id,
-        originPassword: users.password,
+        username: users.username,
+        user_id: users.user_id,
+        password: users.password,
         email: users.email,
-        nickname: users.nickname,
-        Target_Expenditure_Amout: users.spending_target,
+        spending_target: users.spending_target,
+        address: users.address,
+        created_at: users.created_at,
       }
     : null;
 
