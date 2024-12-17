@@ -102,39 +102,40 @@ const ProfileButton = styled.button`
 `;
 
 const CheckUserInfo = ({
-  username,
   user_id,
+  username,
   password,
+  name,
   email,
-  spending_target,
   address,
+  spending_target,
   created_at,
 }) => {
   const [isEditing, setIsEditing] = useState(true);
   const [passwordError, setPasswordError] = useState('');
   const [userInfo, setUserInfo] = useState({
-    username: username || ``,
-    user_id: user_id || '',
-    email: email || '',
-    spending_target: spending_target || '',
-    address: address || '',
+    username: username || '',
     password: '',
+    name: name || '',
+    email: email || '',
+    address: address || '',
+    spending_target: spending_target || '',
     newPassword: '',
     confirmPassword: '',
   });
 
   useEffect(() => {
     setUserInfo({
-      username: username || ``,
-      user_id: user_id || '',
-      email: email || '',
-      spending_target: spending_target || '',
-      address: address || '',
+      username: username || '',
       password: '',
+      name: name || '',
+      email: email || '',
+      address: address || '',
+      spending_target: spending_target || '',
       newPassword: '',
       confirmPassword: '',
     });
-  }, [username, user_id, email, spending_target, address]);
+  }, [username, password, name, email, address, spending_target]);
 
   const toggleEdit = () => {
     setIsEditing(!isEditing);
@@ -144,11 +145,11 @@ const CheckUserInfo = ({
   const cancelEdit = () => {
     setUserInfo({
       username: username,
-      user_id: user_id,
-      email: email,
-      spending_target: spending_target,
-      address: address,
       password: '',
+      name: name,
+      email: email,
+      address: address,
+      spending_target: spending_target,
       newPassword: '',
       confirmPassword: '',
     });
@@ -182,12 +183,13 @@ const CheckUserInfo = ({
     // 수정사항 저장 로직
     axios
       .post('/user/update', {
-        user_id: userInfo.user_id,
+        user_id: user_id,
         username: userInfo.username,
         password: userInfo.newPassword,
+        name: userInfo.name,
         email: userInfo.email,
-        spending_target: userInfo.spending_target,
         address: userInfo.address,
+        spending_target: userInfo.spending_target,
         created_at: created_at,
       })
       .then((response) => {
@@ -243,27 +245,27 @@ const CheckUserInfo = ({
           </ProfileContainer>
           <InnerSection>
             <TitleStyle>이름</TitleStyle>
-            <TextStyle>{username}</TextStyle>
+            <TextStyle>{userInfo.name}</TextStyle>
             <StyledHr />
           </InnerSection>
           <InnerSection>
             <TitleStyle>아이디</TitleStyle>
-            <TextStyle>{user_id}</TextStyle>
+            <TextStyle>{userInfo.username}</TextStyle>
             <StyledHr />
           </InnerSection>
           <InnerSection>
             <TitleStyle>이메일</TitleStyle>
-            <TextStyle>{email}</TextStyle>
+            <TextStyle>{userInfo.email}</TextStyle>
             <StyledHr />
           </InnerSection>
           <InnerSection>
             <TitleStyle>주소</TitleStyle>
-            <TextStyle>{address}</TextStyle>
+            <TextStyle>{userInfo.address}</TextStyle>
             <StyledHr />
           </InnerSection>
           <InnerSection>
             <TitleStyle>이번 달 목표 지출금액</TitleStyle>
-            <TextStyle>{spending_target}</TextStyle>
+            <TextStyle>{userInfo.spending_target}</TextStyle>
           </InnerSection>
         </Section>
       ) : (
@@ -277,7 +279,7 @@ const CheckUserInfo = ({
 
           <InnerSection>
             <CommonInput
-              value={userInfo.user_id}
+              value={userInfo.username}
               placeholder="아이디를 입력하세요"
               text="아이디"
               {...disabledIntputProps}
@@ -320,7 +322,7 @@ const CheckUserInfo = ({
 
           <InnerSection>
             <CommonInput
-              value={userInfo.username}
+              value={userInfo.name}
               text="이름"
               placeholder="이름을 입력하세요"
               {...disabledIntputProps}

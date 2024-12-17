@@ -13,18 +13,20 @@ export function MyPage() {
       .get('/user/id')
       .then((response) => {
         setUsers(response.data);
+        console.log(response.data);
       })
       .catch((error) => console.log(error.response || error.message));
   }, []);
 
   const userInfo = users
     ? {
-        username: users.username,
         user_id: users.user_id,
+        username: users.username,
         password: users.password,
+        name: users.name,
         email: users.email,
-        spending_target: users.spending_target,
         address: users.address,
+        spending_target: users.spending_target,
         created_at: users.created_at,
       }
     : null;

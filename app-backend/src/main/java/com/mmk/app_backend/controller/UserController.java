@@ -22,8 +22,8 @@ public class UserController {
 
     @GetMapping("/id")
     public Optional<User_InfoVO> getUserTempById() {
-        System.out.println(userRepository.findById("jh_ID"));
-        return userRepository.findById("jh_ID");
+        System.out.println(userRepository.findById(2));
+        return userRepository.findById(2);
     }
 
     @PostMapping("/update")
