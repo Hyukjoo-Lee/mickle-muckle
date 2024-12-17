@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Profile } from '../../assets/images/Profile.svg';
 import CustomButton from '../../common/CommonButton';
@@ -122,6 +122,19 @@ const CheckUserInfo = ({
     confirmPassword: '',
   });
 
+  useEffect(() => {
+    setUserInfo({
+      userName: userName || ``,
+      nickname: nickname || ``,
+      userId: userId || '',
+      email: email || '',
+      Target_Expenditure_Amout: Target_Expenditure_Amout || '',
+      password: '',
+      newPassword: '',
+      confirmPassword: '',
+    });
+  }, [userName, userId, email, nickname, Target_Expenditure_Amout]);
+
   const toggleEdit = () => {
     setIsEditing(!isEditing);
     setPasswordError('');
@@ -217,14 +230,15 @@ const CheckUserInfo = ({
     <Root>
       {isEditing ? (
         <Section>
+          <ProfileContainer>
+            <Profile />
+            <ProfileButton onClick={() => console.log('프로필 버튼 클릭!')}>
+              +
+            </ProfileButton>
+          </ProfileContainer>
           <InnerSection>
             <TitleStyle>이름</TitleStyle>
             <TextStyle>{userName}</TextStyle>
-            <StyledHr />
-          </InnerSection>
-          <InnerSection>
-            <TitleStyle>닉네임</TitleStyle>
-            <TextStyle>{nickname}</TextStyle>
             <StyledHr />
           </InnerSection>
           <InnerSection>
