@@ -1,0 +1,26 @@
+server:
+  port: 8065
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521:xe
+    username: mmk
+    password: 1234
+  thymeleaf:
+    cache: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    database: oracle
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+  devtools:
+    restart:
+      enabled: true
+
+logging:
+  level:
+    org:
+      hibernate: info

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import CustomButton from '../../common/CommonButton';
-import CommonInput from '../../common/CommonInput';
 import styled from 'styled-components';
 import { ReactComponent as Profile } from '../../assets/images/Profile.svg';
+import CustomButton from '../../common/CommonButton';
+import CommonInput from '../../common/CommonInput';
+
+import axios from 'axios';
 
 const StyledHr = styled.hr`
   width: 100%;
@@ -160,8 +162,22 @@ const CheckUserInfo = ({
       setPasswordError('비밀번호 확인이 일치하지 않습니다!');
       return;
     }
-    // 수정사항 저장 로직 추가 필요
-    setIsEditing(!isEditing);
+    // 수정사항 저장 로직
+    axios
+      .post('/user/update', {
+        uno: 1,
+        id: userInfo.userId,
+        name: userInfo.userName,
+        password: userInfo.newPassword,
+        email: userInfo.email,
+        nickname: userInfo.nickname,
+        spending_target: userInfo.Target_Expenditure_Amout,
+      })
+      .then((response) => {
+        console.log('저장 성공', response.data);
+        setIsEditing(!isEditing);
+      })
+      .catch((error) => console.log(error.response || error.message));
   };
   const deleteId = () => {};
 
