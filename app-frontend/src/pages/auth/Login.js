@@ -4,8 +4,8 @@ import CommonInput from '../../common/CommonInput';
 import CustomButton from '../../common/CommonButton';
 import or from '../../assets/images/or.png';
 import kakao from '../../assets/images/kakao.png';
-import google from '../../assets/images/google.png';
-import IconButton from './Component/IconButton'; // IButton을 정확히 import
+import naver from '../../assets/images/Naver_icon_circle.png';
+import NaverButton from './Component/IconButton'; // IButton을 정확히 import
 import CommonRoot from '../../common/CommonRoot';
 import { Link } from 'react-router-dom';
 import CommonPageInfo from '../../common/CommonPageInfo';
@@ -230,9 +230,13 @@ export function Login(props) {
             width="63%"
           />
           <IconButtonContainer>
-            <IconButton imagesRoute={kakao} />
-            <IconButton imagesRoute={google} />
-          </IconButtonContainer>
+            <NaverButton imagesRoute={kakao} />
+            <NaverButton
+              imagesRoute={naver}
+              client_id={process.env.REACT_APP_NAVER_REST_API_KEY}
+              redirect_url={process.env.REACT_APP_NAVER_REDIRECT_URL}
+              state={process.env.REACT_APP_NAVER_STATE}
+            />          </IconButtonContainer>
         </LowContainer>
         <SuccessLogin
           open={successVisible}
