@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import CommonInput from '../../common/CommonInput';
 import CustomButton from '../../common/CommonButton';
-import or from '../../assets/images/or.png';
-import kakao from '../../assets/images/kakao.png';
-import naver from '../../assets/images/Naver_icon_circle.png';
-import NaverButton from './Component/IconButton'; // IButton을 정확히 import
 import CommonRoot from '../../common/CommonRoot';
 import { Link } from 'react-router-dom';
 import CommonPageInfo from '../../common/CommonPageInfo';
@@ -16,6 +12,7 @@ import {
 } from '../auth/Component/ErrorMessage';
 import SuccessLogin from './SuccessLogin';
 import CommonHr from '../../common/CommonHr';
+import NaverLogin from './NaverLogin';
 
 const RootIn = styled.div`
   display: flex;
@@ -88,8 +85,9 @@ const IconButtonContainer = styled.div`
   margin-top: 10px;
   width: 80px;
   display: flex;
-  flex-direction: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  	align-items: center;
+    gap:10px
 `;
 const HiddenBox = styled.div`
   display: flex;
@@ -224,19 +222,10 @@ export function Login(props) {
             onClick={handleLogin}
           />
 
-          <img
-            src={or} // import한 이미지 경로 사용
-            alt="Or"
-            width="63%"
-          />
+
           <IconButtonContainer>
-            <NaverButton imagesRoute={kakao} />
-            <NaverButton
-              imagesRoute={naver}
-              client_id={process.env.REACT_APP_NAVER_REST_API_KEY}
-              redirect_url={process.env.REACT_APP_NAVER_REDIRECT_URL}
-              state={process.env.REACT_APP_NAVER_STATE}
-            />          </IconButtonContainer>
+          <NaverLogin/>
+            </IconButtonContainer>
         </LowContainer>
         <SuccessLogin
           open={successVisible}
